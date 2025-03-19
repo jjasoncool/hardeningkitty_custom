@@ -1,6 +1,65 @@
+# EGST - Enterprise Group Security Tool
+
+EGST is a security hardening tool based on HardeningKitty that allows you to audit and secure your Windows systems according to best practices.
+
+## Running EGST Scripts
+
+EGST includes two main scripts that can be executed from the root directory:
+
+### Audit Mode
+
+To assess the current security configuration of your system without making any changes:
+
+```powershell
+.\EGST\audit.ps1
+```
+
+This script will:
+- Generate a comprehensive security assessment report
+- Create a backup of your current system configuration
+- Evaluate compliance against security best practices
+- Identify security vulnerabilities and recommend remediation steps
+
+### Remediation Mode
+
+### Remediation Mode
+
+To apply recommended security settings automatically:
+
+```powershell
+.\EGST\apply_recommand_rules.ps1
+```
+
+This script will:
+- Prompt you to choose between 'apply' mode (to implement settings) or 'restore' mode (to restore previous settings)
+- Create a system restore point before making changes (unless skipped)
+- Apply security best practices to your system
+- Harden configurations according to industry standards
+- Implement recommended registry changes and security settings
+
+You can skip the creation of a system restore point using the -SkipRestorePoint parameter:
+
+```powershell
+restore -SkipRestorePoint
+```
+
+In 'restore' mode, you'll be prompted to select a backup file to revert changes made during a previous remediation.
+
+## Important Notes
+
+- Always run these scripts with administrative privileges
+- Create a system backup before running the remediation script
+- Review the audit report before applying any changes
+- Some security changes may affect application compatibility
+- The scripts will generate log files documenting all actions taken
+
+For detailed information about the specific security settings applied, refer to the scripts in the EGST directory.
+
+---
+
 # HardeningKitty
 
-This is the stable version of _HardeningKitty_ from the [Windows Hardening Project by Michael Schneider](https://github.com/0x6d69636b/windows_hardening). The stable version of _HardeningKitty_ is signed with the code signing certificate of _scip AG_. **Since this is the stable version, we do not accept pull requests in this repo, please send them to the [development repo](https://github.com/0x6d69636b/windows_hardening)**. 
+This is the stable version of _HardeningKitty_ from the [Windows Hardening Project by Michael Schneider](https://github.com/0x6d69636b/windows_hardening). The stable version of _HardeningKitty_ is signed with the code signing certificate of _scip AG_. **Since this is the stable version, we do not accept pull requests in this repo, please send them to the [development repo](https://github.com/0x6d69636b/windows_hardening)**.
 
 _HardeningKitty_ supports hardening of a Windows system. The configuration of the system is retrieved and assessed using a finding list. In addition, the system can be hardened according to predefined values. _HardeningKitty_ reads settings from the registry and uses other modules to read configurations outside the registry.
 
