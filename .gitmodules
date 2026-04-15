@@ -1,0 +1,3 @@
+[submodule "hardeningkitty"]
+	path = hardeningkitty
+	url = https://github.com/0x6d69636b/windows_hardening
