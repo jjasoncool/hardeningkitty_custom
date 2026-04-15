@@ -15,14 +15,11 @@ try {
     # 設定工作目錄為檔案所在資料夾
     Set-Location -Path (Split-Path -Parent $MyInvocation.MyCommand.Definition)
 
-    # 設定執行策略為 Bypass，範圍為 CurrentUser，並強制執行
-    Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass -Force
-
     # 提供選項給使用者
     Write-Host "Choose an action: 'apply' to apply configuration rules, 'restore' to restore previous settings."
     $action = Read-Host
     if ($action -eq 'apply') {
-        Import-Module .\..\HardeningKitty.psm1
+        Import-Module .\..\hardeningkitty\HardeningKitty.psm1
 
         # 檢查是否提供 -SkipRestorePoint 參數
         if ($PSBoundParameters.ContainsKey('SkipRestorePoint')) {
@@ -33,7 +30,7 @@ try {
             Invoke-HardeningKitty -Mode HailMary -FileFindingList .\EGST_windows_rulset.csv -Log
         }
     } elseif ($action -eq 'restore') {
-        Import-Module .\..\HardeningKitty.psm1
+        Import-Module .\..\hardeningkitty\HardeningKitty.psm1
 
         # 跳出檔案選擇對話框
         Add-Type -AssemblyName System.Windows.Forms

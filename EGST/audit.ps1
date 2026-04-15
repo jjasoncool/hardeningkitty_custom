@@ -9,11 +9,8 @@ $originalPath = Get-Location
 # 設定工作目錄為檔案所在資料夾
 Set-Location -Path (Split-Path -Parent $MyInvocation.MyCommand.Definition)
 
-# 設定執行策略為 Bypass，範圍為 CurrentUser，並強制執行
-Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass -Force
-
 # 匯入 HardeningKitty 模組
-Import-Module .\..\HardeningKitty.psm1
+Import-Module .\..\hardeningkitty\HardeningKitty.psm1
 
 # 備份原始設定資料
 Invoke-HardeningKitty -Mode Config -FileFindingList .\EGST_windows_rulset.csv -Backup
